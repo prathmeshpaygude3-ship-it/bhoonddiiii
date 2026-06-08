@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Just For You AWAREE🤍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #faf7f4;
+    color: #333;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    padding: 40px 20px 20px;
+}
+header h1 {
+    font-weight: 500;
+    font-size: 2.2rem;
+}
+header p {
+    color: #777;
+}
+
+/* MUSIC */
+#musicBtn {
+    padding: 10px 22px;
+    border-radius: 25px;
+    border: none;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-top: 15px;
+}
+
+/* PHOTOS */
+.gallery {
+    max-width: 900px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    padding: 0 15px;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+/* NOTE ABOVE LETTERS */
+.note-section {
+    max-width: 700px;
+    margin: 50px auto 30px;
+    padding: 0 20px;
+}
+.note-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* LETTERS */
+.letters {
+    margin: 30px auto 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 600px;
+}
+.letter {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.letter:hover {
+    background: #ffe6ee;
+}
+.letter.used {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* MESSAGE MODAL */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+#messageBox {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    max-width: 90%;
+    width: 360px;
+    line-height: 1.7;
+    animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+#closeBtn {
+    margin-top: 25px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: none;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+    margin: 60px 0 30px;
+    color: #999;
+    font-size: 0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Happy Birthday Bhoonnddiii !!!🤍</h1>
+    <p>Some things are better read slowly.</p>
+
+    <button id="musicBtn">▶ Play Music</button>
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+</header>
+
+<!-- PHOTOS -->
+<section class="gallery">
+    <img src="photos/1.jpg">
+    <img src="photos/2.jpg">
+    <img src="photos/3.jpg">
+    <img src="photos/4.jpg">
+    <img src="photos/5.jpg">
+    <img src="photos/6.jpg">
+    <img src="photos/7.jpg">
+    <img src="photos/8.jpg">
+</section>
+
+<!-- NOTE ABOVE MESSAGES -->
+<section class="note-section">
+    <p>
+      Happiest birthday Awareeeee ,ata kuthun chalu karu umm hindi mdhye bolto bara padta like thankkk youuu tonss bcoz tune meko mere life ke almost har stage mai help kari hai you've been there alwas by my back to support me,listened my RR(randirona) 1000s of times till i get over
+      , humne waise boht memories banaye hai last 2-3 years mdhye , ik there are been ups and downs in our bond but ya its okayy coz konse friendship mai ups and downs nhi aate right? life mdhye pahili daaru tu paajliyes , and you've been my dessert partner for reall
+      like kitiii explore karto yrr apan cafes and all , bhai tu baghtiyes ka aplyala bhetun tase 4 months zalet baki bghuu apannnn march ending la yeill mi tevha bhetu , bro like i don't have any bond other than u and like last time pn apan bhetlo hoto bhaii almost 8 taas gossip session challa hota
+      apla aah aah sry tea-tea session i would say , kdhi vichar nko karus tevha bgh mi tula bangle dila hota tya divshi , like ajun pn mi date la vagare gelo kivha hangout karayla gelo tari topicss shodhayla lagtat but apla vishay crazy aheee tea wala , i hope konachi nazar nahi lagli pahije
+      , and one more thing like everyone in my life knows you and most of the gurrllss are jealous speciallyy vartikaa but thike they just can be jealous they can't match , hahaha ,bhai ajun rakhi nahi bandhli rao tu gaddari karbe, br chall once again HAPPPIIESSTTT BDAYYYY BHONNNDIIII, love you tons >>> 🤍
+    </p>
+</section>
+
+<!-- LETTERS -->
+<section>
+    <h2>✉️ Letters</h2>
+    <p style="color:#777">Open them one by one.</p>
+
+    <div class="letters" id="letters"></div>
+</section>
+
+<!-- MESSAGE MODAL -->
+<div id="overlay">
+    <div id="messageBox">
+        <div id="messageText"></div>
+        <button id="closeBtn">Close</button>
+    </div>
+</div>
+
+<footer>
+    Made with care 🤍
+</footer>
+
+<script>
+/* YOUR MESSAGES — UNCHANGED */
+const messages = [
+    "Happyy 694,224,000 seconds on this planet shembdee ",
+    "Diet chalu kar g , ani gym pn 🌻",
+];
+
+const lettersContainer = document.getElementById("letters");
+const overlay = document.getElementById("overlay");
+const messageText = document.getElementById("messageText");
+const closeBtn = document.getElementById("closeBtn");
+
+/* CREATE LETTERS */
+messages.forEach((_, i) => {
+    const btn = document.createElement("button");
+    btn.className = "letter";
+    btn.textContent = "✉️";
+    btn.onclick = () => {
+        if (btn.classList.contains("used")) return;
+        messageText.textContent = messages[i];
+        overlay.style.display = "flex";
+        btn.classList.add("used");
+    };
+    lettersContainer.appendChild(btn);
+});
+
+closeBtn.onclick = () => overlay.style.display = "none";
+
+/* MUSIC */
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+let playing = false;
+
+musicBtn.onclick = () => {
+    if (!playing) {
+        music.play();
+        musicBtn.textContent = "⏸ Pause Music";
+    } else {
+        music.pause();
+        musicBtn.textContent = "▶ Play Music";
+    }
+    playing = !playing;
+};
+</script>
+
+</body>
+</html>
+
+
